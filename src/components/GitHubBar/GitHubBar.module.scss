@@ -1,0 +1,49 @@
+.contentWrapper {
+  position: absolute;
+  width: calc(100% - 232px);
+  background: #cbc6c6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 38px;
+
+  z-index: -1;
+}
+
+.boxProfileFriends {
+  display: flex;
+  gap: 40px;
+
+  .profileFriends {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    a {
+      color: #474747;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+}
+
+.boxProfileLinks {
+  display: flex;
+  gap: 40px;
+
+  .profileLinks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    a {
+      color: #474747;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+}

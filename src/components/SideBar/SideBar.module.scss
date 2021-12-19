@@ -1,0 +1,41 @@
+.contentWrapper {
+  position: fixed;
+  right: 0;
+  width: 100%;
+  max-width: 232px;
+  background: #828181;
+  height: 100vh;
+  overflow-y: hidden;
+
+  padding: 26px 29px;
+
+  .sideBarTitle {
+    width: 100%;
+    text-align: center;
+    background: #585656;
+    color: #fff;
+    font-size: 16px;
+    padding: 6px;
+    border-bottom: 1px solid #707070;
+  }
+
+  .sideBarComments {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ffffff;
+    margin: 13px 0;
+    flex-wrap: wrap;
+    color: #fff;
+    padding: 19px 12px;
+    gap: 8px;
+    cursor: pointer;
+
+    img {
+      margin-left: 8px;
+    }
+
+    span {
+      font-size: 14px;
+    }
+  }
+}
