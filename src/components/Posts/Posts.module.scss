@@ -44,43 +44,5 @@
       font-size: 20px;
       margin: 15px 15px 25px 32px;
     }
-
-    .contentComments {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      padding: 15px;
-      background: #00000029;
-      border-bottom: 1px solid #474747;
-
-      .userInfo {
-        display: flex;
-        width: 100%;
-
-        .userInfoImage {
-          margin-right: 18px;
-
-          img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-          }
-        }
-
-        .userInfoProfile {
-          width: 100%;
-          padding-bottom: 8px;
-          border-bottom: 1px solid #707070;
-
-          span {
-            margin: 0 8px;
-          }
-        }
-      }
-
-      .userInfoCommnet {
-        margin: 10px 70px;
-      }
-    }
   }
 }

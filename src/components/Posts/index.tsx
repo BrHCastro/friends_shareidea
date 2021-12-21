@@ -1,56 +1,80 @@
 import styles from "./Posts.module.scss";
 
 import UserAvatar from "../../assets/user_min.png";
+import Comments from "../Comments";
+import { postsApi } from "../../services/api";
+import { useEffect, useState } from "react";
 
-export default function Posts() {
+type Posts = {
+  id: number;
+  userId: number;
+  title: string;
+  body: string;
+};
+
+type Comments = {
+  id: number;
+  postId: number;
+  name: string;
+  email: string;
+  body: string;
+};
+
+async function getComments(): Promise<Comments[]> {
+  const response: any = await postsApi.get("/comments");
+
+  const result = response.data.map((post: any) => {
+    return {
+      postId: post.postId,
+      id: post.id,
+      name: post.name,
+      email: post.email,
+      body: post.body,
+    };
+  });
+  return result;
+}
+
+export default function Posts(props: Posts) {
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    const arr: any = [];
+    getComments().then((comments) => {
+      comments.map((comment) => {
+        arr.push(comment);
+      });
+
+      setComments(arr);
+    });
+  }, []);
+
   return (
     <>
       <div className={styles.cardPrincipal}>
         <div className={styles.userAvatar}>
-          <span className={styles.userValue}>1</span>
+          <span className={styles.userValue}>{props.userId}</span>
           <img src={UserAvatar} alt="Avatar do usuário" />
         </div>
         <div className={styles.contentInfo}>
-          <h1>
-            Titulo do post aqui inteiro meu brother cervejis geladis forevis
-          </h1>
+          <h1>{props.title}</h1>
           <hr />
-          <span>
-            Corpo do post aqui mézis ardidus de arguardentis sempre descis
-            rasgandis a guélis mas esquenta a carcaça e rebate a preguiçis
-            rasgandis a guélis mas esquenta a carcaça e rebate a preguiçis
-            rasgandis a guélis mas esquenta a carcaça e rebate a preguiçis
-            rasgandis a guélis mas esquenta a carcaça e rebate a preguiçis
-            rasgandis a guélis mas esquenta a carcaça e rebate a preguiçis
-            rasgandis a guélis mas esquenta a carcaça e rebate a preguiçis
-          </span>
+          <span>{props.body}</span>
 
-          <div className={styles.contentComments}>
-            <div className={styles.userInfo}>
-              <div className={styles.userInfoImage}>
-                <img src={UserAvatar} alt="Avatar do usuário comentário" />
-              </div>
-              <div className={styles.userInfoProfile}>
-                <h3>Nome do caboclo</h3>
-                <span>email@do.caboclo</span>
-              </div>
-            </div>
-            <div className={styles.userInfoCommnet}>
-              <p>
-                Mensagis do caboclis completis com tequilis e limãozis Mensagis
-                do caboclis completis com tequilis e limãozis do caboclis
-                completis com tequilis e limãozis do caboclis completis com
-                tequilis e limãozis do caboclis completis com tequilis e
-                limãozis do caboclis completis com tequilis e limãozis limãozis
-                do caboclis completis com tequilis e limãozis limãozis do
-                caboclis completis com tequilis e limãozis limãozis do caboclis
-                completis com tequilis e limãozis limãozis do caboclis completis
-                com tequilis e limãozis limãozis do caboclis completis com
-                tequilis e limãozis limãozis do caboclis completis com tequilis
-                e limãozis
-              </p>
-            </div>
-          </div>
+          {comments.map((comment: Comments) => {
+            if (comment.postId === props.id) {
+              return (
+                <Comments
+                  key={comment.id}
+                  postId={comment.postId}
+                  id={comment.id}
+                  name={comment.name}
+                  email={comment.email}
+                  body={comment.body}
+                />
+              );
+            }
+          })}
         </div>
       </div>
     </>
