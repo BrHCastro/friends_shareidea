@@ -6,8 +6,9 @@
   background: #828181;
   height: 100vh;
   overflow-y: hidden;
+  z-index: 9;
 
-  padding: 26px 29px;
+  padding: 110px 29px 26px 29px;
 
   .sideBarTitle {
     width: 100%;
@@ -29,6 +30,7 @@
     padding: 19px 12px;
     gap: 8px;
     cursor: pointer;
+    transition: background 0.2s;
 
     img {
       margin-left: 8px;
@@ -36,6 +38,10 @@
 
     span {
       font-size: 14px;
+    }
+
+    &:hover {
+      background: #585656;
     }
   }
 }

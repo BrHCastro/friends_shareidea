@@ -1,0 +1,10 @@
+.contentWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 0;
+  top: 110px;
+  width: calc(100% - 232px);
+  padding: 15px;
+}
