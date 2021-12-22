@@ -15,7 +15,7 @@ export function App() {
       {gitHubState.hasGitHubUser && gitHubState.wasFound ? (
         <>
           <Header />
-          <GitHubBar data={gitHubState} />
+          <GitHubBar />
           <Home />
         </>
       ) : (
@@ -23,7 +23,7 @@ export function App() {
       )}
 
       <Toaster
-        position="bottom-center"
+        position="top-center"
         reverseOrder={false}
         toastOptions={{
           style: {
