@@ -6,7 +6,6 @@ const notify = (message: string) => toast.error(message);
 
 //Tipando os dados que quero para o usuário
 type GitHubUser = {
-  loading: boolean;
   hasGitHubUser: boolean;
   wasFound: boolean;
   user: {
@@ -36,7 +35,6 @@ type PropsGitHubUserContext = {
 //Valor default do contexto
 const DEFAULT_VALUES = {
   gitHubState: {
-    loading: false,
     hasGitHubUser: false,
     wasFound: false,
     user: {
@@ -67,7 +65,6 @@ const GitHubUserContextProvider: React.FC = ({ children }) => {
   const getGitHubUser = (gitHubUserName: string) => {
     setGitHubState((prevState) => ({
       ...prevState,
-      loading: !prevState.loading,
     }));
 
     githubApi
@@ -105,41 +102,14 @@ const GitHubUserContextProvider: React.FC = ({ children }) => {
       .finally(() => {
         setGitHubState((prevState) => ({
           ...prevState,
-          loading: !prevState.loading,
         }));
       });
-  };
-
-  const getGitHubRepos = (gitHubUserName: string) => {
-    githubApi.get(`users/${gitHubUserName}/repos`).then(({ data }: any) => {
-      setGitHubState((prevState) => ({
-        ...prevState,
-        repositories: data,
-      }));
-    });
-  };
-
-  const getGitHubStarred = (gitHubUserName: string) => {
-    githubApi.get(`users/${gitHubUserName}/starred`).then(({ data }: any) => {
-      setGitHubState((prevState) => ({
-        ...prevState,
-        starred: data,
-      }));
-    });
   };
 
   const contextValues = {
     gitHubState,
     getGitHubUser: useCallback(
       (gitHubUserName) => getGitHubUser(gitHubUserName),
-      []
-    ),
-    getGitHubRepos: useCallback(
-      (gitHubUserName) => getGitHubRepos(gitHubUserName),
-      []
-    ),
-    getGitHubStarred: useCallback(
-      (gitHubUserName) => getGitHubStarred(gitHubUserName),
       []
     ),
   };
