@@ -29,7 +29,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   margin: auto 0;
   position: relative;
 
@@ -129,14 +129,54 @@
   }
 
   .loginBannerWrapper {
-    display: flex;
     position: absolute;
   }
 
   .titleBanner {
     position: relative;
     z-index: 1;
-    margin-bottom: 130px;
+    bottom: 150px;
     padding: 0 50px;
+  }
+
+  .loginBoxWrapper {
+    button {
+      margin-bottom: 26px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .loginBoxWrapper {
+    padding: 15px;
+    justify-content: flex-end;
+
+    strong {
+      font-size: 24px;
+    }
+  }
+
+  .titleBanner {
+    span {
+      display: none;
+    }
+
+    h1 {
+      font-size: 2.8rem !important;
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .loginBoxWrapper {
+    padding: 0 15px;
+
+    strong {
+      font-size: 24px;
+    }
+  }
+
+  .loginBannerWrapper {
+    display: none;
   }
 }
