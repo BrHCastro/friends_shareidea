@@ -2,8 +2,11 @@ import styles from "./Header.module.scss";
 
 import Logo from "../../assets/logo_min.png";
 import UserImage from "../../assets/user_min.png";
+import { useGitHub } from "../../hooks/gitHubHook";
 
 export function Header() {
+  const { gitHubState } = useGitHub();
+
   return (
     <header>
       <section className={styles.contentWrapper}>
@@ -13,10 +16,13 @@ export function Header() {
         </div>
         <div className={styles.boxProfile}>
           <div className={styles.boxProfileText}>
-            <h2>Nome do Cabloco</h2>
-            <span>Repositórios: 18</span>
+            <h2>{gitHubState.user.name}</h2>
+            <span>Repositórios: {gitHubState.user.public_repos}</span>
           </div>
-          <img src={UserImage} alt="Imagem do usuário" />
+          <img
+            src={!gitHubState ? UserImage : gitHubState.user.avatar_url}
+            alt="Imagem do usuário"
+          />
         </div>
       </section>
     </header>

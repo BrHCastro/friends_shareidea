@@ -1,9 +1,23 @@
 import styles from "./LoginBox.module.scss";
 import Logo from "../../assets/logo_max.png";
+import { useState } from "react";
+import { useGitHub } from "../../hooks/gitHubHook";
 
 export function LoginBox() {
+  const [gitHubUserNameForSearch, setGitHubUserNameForSearch] =
+    useState<any>(undefined);
+  const { getGitHubUser } = useGitHub();
+
+  function submitGetGitHubUser() {
+    if (gitHubUserNameForSearch) {
+      return getGitHubUser(gitHubUserNameForSearch);
+    }
+
+    return;
+  }
+
   return (
-    <main>
+    <main className={styles.loginWrapper}>
       <div className={styles.overlay}></div>
       <div className={styles.contentWrapper}>
         <div className={styles.loginBannerWrapper}>
@@ -29,10 +43,14 @@ export function LoginBox() {
             name="login"
             id="login"
             placeholder="Seu usuário no GitHub..."
+            onChange={(event) => setGitHubUserNameForSearch(event.target.value)}
           />
-          <a href="#" className={styles.signInWithGitHub}>
+          <button
+            className={styles.signInWithGitHub}
+            onClick={submitGetGitHubUser}
+          >
             Entrar
-          </a>
+          </button>
         </div>
       </div>
     </main>
